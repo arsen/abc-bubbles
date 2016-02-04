@@ -6,19 +6,20 @@
     border: 1px solid #000;
 }
 
-.bubble.orange {
-    background-color: #FF9800;
-    border: 1px solid #F57C00;
-}
-
-.bubble.orange .light {
+.bubble .light {
     position: absolute;
     width: 35%;
     height: 35%;
-    background-color: #FFB74D;
+    background-color: #FFFFFF;
+    opacity: 0.4;
     top: 15%;
     left: 20%;
     border-radius: 50%;
+}
+
+.bubble.orange {
+    background-color: #FF9800;
+    border: 1px solid #F57C00;
 }
 
 .bubble.bounce {
@@ -26,8 +27,27 @@
     animation: bounce 2s;
 }
 
+.bubble.pop {
+    display: none;
+}
+
+.bubble .value {
+    text-align: center;
+    height: 26px;
+    font-size: 3em;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
 @-webkit-keyframes bounce {
-    0%, 20%, 100% {
+    0%,
+  20%,
+  100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
     }
@@ -50,7 +70,9 @@
 }
 
 @keyframes bounce {
-    0%, 20%, 100% {
+    0%,
+  20%,
+  100% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
     }

@@ -3,21 +3,18 @@
     var animationEndEvent = 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend';
 
     return {
-      scope: {},
+      scope: {
+        x: '@',
+        value: '@',
+        radius: '@',
+        color: '@'
+      },
       restrict: 'E',
-      templateUrl: 'bubble/bubble.html',
       replace: true,
+      templateUrl: 'bubble/bubble.html',
       link: function($scope, element, attrs) {
-        if (attrs.color) {
-          element.addClass(attrs.color);
-        }
-
-        element.bind(animationEndEvent, function() {
-          element.removeClass('bounce');
-        });
-
         element.bind('click', function() {
-          element.addClass('bounce');
+          element.addClass('pop');
         });
       }
     };
