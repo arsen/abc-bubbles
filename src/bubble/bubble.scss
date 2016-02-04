@@ -4,40 +4,61 @@
   height: 100px;
   border-radius: 50%;
   border: 1px solid #000;
-  .light {}
-}
-
-.bubble.orange {
-  background-color: #FF9800;
-  border: 1px solid #F57C00;
+  
   .light {
     position: absolute;
     width: 35%;
     height: 35%;
-    background-color: #FFB74D;
+    background-color: #FFFFFF;
+    opacity: 0.4;
     top: 15%;
     left: 20%;
     border-radius: 50%;
   }
-}
 
+  &.orange {
+    background-color: #FF9800;
+    border: 1px solid #F57C00;
+  }
 
-.bubble.bounce {
-  animation: bounce 2s;
+  &.bounce {
+    animation: bounce 2s;
+  }
+
+  &.pop {
+    display: none;
+  }
+
+  .value {
+    text-align: center;
+    height: 26px;
+    font-size: 3em;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
 }
 
 @keyframes bounce {
-  0%, 20%, 100% {
+  0%,
+  20%,
+  100% {
     transform: translateY(0);
   }
+
   50%,
   80% {
     transform: translateY(0) scale(1.1, 0.9);
-
   }
+
   40% {
     transform: translateY(-30px);
   }
+
   60% {
     transform: translateY(-15px);
   }
