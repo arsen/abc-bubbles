@@ -1,0 +1,11 @@
+{
+  "name": "abc-bubbles",
+  "app_id": "",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "16.45.421.19"
+    }
+  ]
+}

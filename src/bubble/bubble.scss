@@ -1,0 +1,22 @@
+.bubble {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  .light {}
+}
+
+.bubble.orange {
+  background-color: #FF9800;
+  border: 1px solid #F57C00;
+  .light {
+    position: absolute;
+    width: 35%;
+    height: 35%;
+    background-color: #FFB74D;
+    top: 15%;
+    left: 20%;
+    border-radius: 50%;
+  }
+}
