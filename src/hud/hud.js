@@ -1,11 +1,11 @@
 (function(app) {
-  app.directive('bubble', [function() {
+  app.directive('hud', [function() {
     var animationEndEvent = 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend';
 
     return {
       scope: {},
       restrict: 'E',
-      templateUrl: 'bubble/bubble.html',
+      templateUrl: 'hud/hud.html',
       replace: true,
       link: function($scope, element, attrs) {
         if (attrs.color) {

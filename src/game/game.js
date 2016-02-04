@@ -1,54 +1,54 @@
 (function(app) {
-	app.service('$game', ['$rootScope', 'gameTopics', function($rootScope, gameTopics) {
+  app.service('$game', ['$rootScope', 'gameTopics', function($rootScope, gameTopics) {
 
-		var currentScore = 0;
-		var bubblesCount = 0;
+    var currentScore = 0;
+    var bubblesCount = 0;
 
-		var gameStart = function (topic, timeLimit, difficulty) {
-			currentScore = 0;
-			bubblesCount = 0;
-			var gameData = {
-				values: gameTopics[topic],
-				timeLimit: timeLimit,
-				difficulty: difficulty,
-				currentScore: currentScore
-			};
+    var gameStart = function(topic, timeLimit, difficulty) {
+      currentScore = 0;
+      bubblesCount = 0;
+      var gameData = {
+        values: gameTopics[topic],
+        timeLimit: timeLimit,
+        difficulty: difficulty,
+        currentScore: currentScore
+      };
 
-			$rootScope.$emit('gameStart', gameData);
-		};
+      $rootScope.$emit('gameStart', gameData);
+    };
 
-		var bubblePopped = function(score) {
-			currentScore += score;
-			bubblesCount++;
-			var data = {
-				score: score,
-				totalScore: currentScore,
-				bubblesCount: bubblesCount
-			};
-			$rootScope.$emit('bubblePopped', data);
-		};
+    var bubblePopped = function(score) {
+      currentScore += score;
+      bubblesCount++;
+      var data = {
+        score: score,
+        totalScore: currentScore,
+        bubblesCount: bubblesCount
+      };
+      $rootScope.$emit('bubblePopped', data);
+    };
 
-		var gameDone = function() {
-			var gameDoneData = {
-				totalScore: currentScore,
-				bubblesCount: bubblesCount
-			};
+    var gameDone = function() {
+      var gameDoneData = {
+        totalScore: currentScore,
+        bubblesCount: bubblesCount
+      };
 
-			$rootScope.$emit('gameDone', gameDoneData);
-		};
+      $rootScope.$emit('gameDone', gameDoneData);
+    };
 
-		var gameCancel = function() {
-			$rootScope.$emit('gameCancel');
-		};
+    var gameCancel = function() {
+      $rootScope.$emit('gameCancel');
+    };
 
-		var publicMethods = {
-			start: gameStart,
-			done: gameDone,
-			cancel: gameCancel,
-			bubblePopped: bubblePopped
-		};
+    var publicMethods = {
+      start: gameStart,
+      done: gameDone,
+      cancel: gameCancel,
+      bubblePopped: bubblePopped
+    };
 
-		return publicMethods;
-		
-	}]);
+    return publicMethods;
+
+  }]);
 }(angular.module('abc-bubbles')));
