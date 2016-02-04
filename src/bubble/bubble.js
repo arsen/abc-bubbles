@@ -1,5 +1,7 @@
 (function(app) {
   app.directive('bubble', [function() {
+    var animationEndEvent = 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend';
+
     return {
       scope: {},
       restrict: 'E',
@@ -9,6 +11,14 @@
         if (attrs.color) {
           element.addClass(attrs.color);
         }
+
+        element.bind(animationEndEvent, function() {
+          element.removeClass('bounce');
+        });
+
+        element.bind('click', function() {
+          element.addClass('bounce');
+        });
       }
     };
   }]);
