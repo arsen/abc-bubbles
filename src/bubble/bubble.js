@@ -18,6 +18,9 @@
           $game.bubblePopped();
           element.remove();
         });
+        element.on(animationEndEvent, function() {
+          element.remove();
+        })
       }
     };
   }]);

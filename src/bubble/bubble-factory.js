@@ -14,7 +14,7 @@
       var value = values[randomBetween(0, values.length)];
       var color = colors[randomBetween(0, colors.length)];
       var data = {
-        html: '<bubble x="' + x + '" radius="' + r + '" value="' + value + '" color="' + color + '"></bubble>'
+        html: '<bubble x="' + x + '" radius="' + r + '" value="' + value + '" color="' + color + '" class="drop"></bubble>'
       };
       $rootScope.$emit('newBubble', data);
     };
