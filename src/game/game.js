@@ -13,12 +13,12 @@
         difficulty: difficulty,
         currentScore: currentScore
       };
-
+      console.log('test')
       $rootScope.$emit('gameStart', gameData);
     };
 
     var bubblePopped = function(score) {
-      currentScore += score;
+      currentScore += score || 1;
       bubblesCount++;
       var data = {
         score: score,

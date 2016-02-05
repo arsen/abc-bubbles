@@ -11,6 +11,9 @@
 
     //Ready game listeners
     $rootScope.$on('newBubble', addBubbleToDOM);
+    $scope.$on('$destroy', function() {
+      $game.cancel();
+    });
 
     //Game Functions
     function addBubbleToDOM(e, data) {
