@@ -9,12 +9,11 @@
             replace: true,
             link: function(scope, element, attrs) {
 
-                scope.timerValue = 60;
+                scope.timerValue = 10;
 
                 var stop;
 
                 var timerStart = function() {
-                    console.log("timer adlkfj");
                     // Don't start a new fight if we are already fighting
                     if (angular.isDefined(stop)) return;
 
@@ -28,10 +27,8 @@
                     }, 1000);
                 };
                 timerStart();
-                console.log("$game", $game);
-                $rootScope.$on('gameStart', function() {
-                    console.log("soo anon");
-                });
+                
+                $rootScope.$on('gameStart', timerStart);
 
                 scope.timerStop = function() {
                     if (angular.isDefined(stop)) {
