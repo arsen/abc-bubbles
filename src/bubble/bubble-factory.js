@@ -5,7 +5,7 @@
     };
     var colors = ['red', 'green', 'blue', 'yellow', 'purple'];
     var topic = '';
-    var bubbleStreamCancel;
+    var bubbleStreamTimer;
     var _W = $window.innerWidth;
     var values;
     var newBubble = function() {
@@ -21,13 +21,19 @@
     var bubbleStream = function(e, data) {
       newBubble();
       var time = randomBetween(500, 2000);
-      bubbleStreamCancel = $timeout(bubbleStream, time);
+      bubbleStreamTimer = $timeout(bubbleStream, time);
     };
+    var cancelTimer = function() {
+      $timeout.cancel(bubbleStreamTimer);
+    };
+    $rootScope.$on('gameCancel', cancelTimer);
+    $rootScope.$on('gameDone', cancelTimer);
     return {
       initialize: function() {
-        $rootScope.$on('gameStart', function(e, data) {
+        var off = $rootScope.$on('gameStart', function(e, data) {
           values = data.values;
           bubbleStream();
+          off();
         });
       }
     };
