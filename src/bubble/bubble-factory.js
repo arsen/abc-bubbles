@@ -3,24 +3,27 @@
     var randomBetween = function(a, b) {
       return Math.floor((Math.random() * b) + a);
     };
-    var colors = ['red', 'green', 'blue', 'yellow', 'purple'];
+    var colors = ['orange', 'green', 'yellow', 'red'];
     var topic = '';
     var bubbleStreamTimer;
     var _W = $window.innerWidth;
     var values;
     var newBubble = function() {
-      var r = randomBetween(_W / 32, _W / 16);
-      var x = randomBetween(0, _W - r * 2);
+      var r = 185 //randomBetween(_W / 32, _W / 16);
+      var x = randomBetween(0, 800 - r * 2);
       var value = values[randomBetween(0, values.length)];
       var color = colors[randomBetween(0, colors.length)];
       var data = {
-        html: '<bubble x="' + x + '" radius="' + r + '" value="' + value + '" color="' + color + '" class="drop"></bubble>'
+        x: x,
+        value: value,
+        color: color
+          // html: '<bubble x="' + x + '" radius="' + r + '" value="' + value + '" color="' + color + '" class="drop"></bubble>'
       };
       $rootScope.$emit('newBubble', data);
     };
     var bubbleStream = function(e, data) {
       newBubble();
-      var time = randomBetween(500, 2000);
+      var time = randomBetween(200, 500);
       bubbleStreamTimer = $timeout(bubbleStream, time);
     };
     var cancelTimer = function() {

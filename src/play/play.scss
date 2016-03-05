@@ -1,3 +1,12 @@
-#page-play {
-	
+#page-play {}
+
+#game {
+  overflow: hidden;
+}
+
+#game canvas {
+  margin: 0 auto;
+  overflow: hidden;
+  border: solid green 1px;
+  border-radius: 10px;
 }
