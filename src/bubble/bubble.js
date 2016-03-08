@@ -1,5 +1,5 @@
 (function(app) {
-  app.directive('bubble', ['$game', function($game) {
+  app.directive('bubble', ['gameService', function(gameService) {
     var animationEndEvent = 'animationend webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend';
 
     return {
@@ -15,12 +15,12 @@
       link: function(scope, element, attrs) {
         element.bind('click', function() {
           element.addClass('pop');
-          $game.bubblePopped();
+          gameService.bubblePopped();
           element.remove();
         });
         element.on(animationEndEvent, function() {
           element.remove();
-        })
+        });
       }
     };
   }]);

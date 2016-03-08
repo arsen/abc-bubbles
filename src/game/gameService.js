@@ -1,5 +1,5 @@
 (function(app) {
-  app.service('$game', ['$rootScope', 'gameTopics', function($rootScope, gameTopics) {
+  app.service('gameService', ['$rootScope', 'gameTopics', function($rootScope, gameTopics) {
 
     var currentScore = 0;
     var bubblesCount = 0;
