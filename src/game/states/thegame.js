@@ -3,7 +3,7 @@
     var _this = this;
 
     this.preload = function() {
-      _this.game.load.spritesheet('bubbleSheet', 'vendor/img/oie_transparent.png', 213, 284);
+      _this.game.load.spritesheet('bubbleSheet', 'vendor/img/oie_transparent.png', 227, 284);
       _this.game.stage.backgroundColor = '#ffffff';
       //Initialize game components
       bubbleFactory.initialize();
@@ -34,13 +34,12 @@
 
       wallRight.body.immovable = true;
       wallRight.body.allowGravity = false;
-    };
+    }
 
     var topic = 'letters';
     var difficultyLevel = 'easy';
     var timeLimit = 60;
     //Ready game listeners
-    console.log(addBubbleToGame)
     $rootScope.$on('newBubble', addBubbleToGame);
 
     var bubbleSpriteColorLocations = {
@@ -66,15 +65,17 @@
       bubble.enableBody = true;
       bubble.body.gravity.y = 20;
       bubble.inputEnabled = true;
-      bubble.events.onInputDown.add(removeBubble, this);
+      bubble.events.onInputDown.add(popBubble, this);
       bubbles.push(bubble);
-    };
-    console.log(addBubbleToGame)
-    var removeBubble = function removeBubble(bubble) {
-      bubble.destroy();
+    }
+
+    function popBubble(bubble) {
+      var i = bubble.animations.currentFrame.index;
+      bubble.animations.add('pop', [i + 1, i + 2, i + 3, i + 4, i + 5]);
+      bubble.animations.play('pop', 30, false, true)
       bubble.gone = true;
       gameService.bubblePopped();
-    };
+    }
 
     function cull() {
       // console.log("bubbles.length: ", bubbles.length);
@@ -90,20 +91,20 @@
           // console.log('cull');
         }
       }
-    };
+    }
 
     function randomBetweenWithNeg(a, b) {
       return Math.floor((Math.random() * b * 2) + a);
-    };
+    }
 
-    var wind = function wind() {
+    function wind() {
       for (var i = 0; i < bubbles.length; i++) {
         var r = randomBetweenWithNeg(-100, 100);
         // console.log("wind: ", r)
         bubbles[i].body.acceleration.x = r;
       }
       $timeout(wind, 10000);
-    };
+    }
 
     function checkCollision() {
       for (var i = 0; i < bubbles.length; i++) {
@@ -111,12 +112,12 @@
         _this.game.physics.arcade.collide(bubbles[i], wallRight, bounce);
         _this.game.physics.arcade.collide(bubbles[i], wallLeft, bounce);
       }
-    };
+    }
 
     function bounce(bubble, wall) {
       // console.log("here: ", bubble.body.velocity.x, bubble.body.acceleration.x, bubble.body.velocity.y, bubble.body.acceleration.y, bubble.body.position.y, bubble.body.gravity.y);
       bubble.body.velocity.x *= -1;
       bubble.body.acceleration.x *= -1;
-    };
+    }
   }]);
 }(angular.module('abc-bubbles')));
